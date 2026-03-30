@@ -57,20 +57,18 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
       >
         {/* Visual area */}
         <div
-          className="w-full h-44 relative flex-shrink-0"
+          className="w-full h-44 relative flex-shrink-0 flex items-center justify-center"
           style={{ background: 'rgba(255,255,255,0.03)' }}
         >
-          <div className="w-full h-full flex items-center justify-center">
-            <div
-              className="w-20 h-20 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-              style={{
-                background: `${color}15`,
-                border: `1px solid ${color}35`,
-                color,
-              }}
-            >
-              {icon}
-            </div>
+          <div
+            className="w-20 h-20 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+            style={{
+              background: `${color}15`,
+              border: `1px solid ${color}35`,
+              color,
+            }}
+          >
+            {icon}
           </div>
 
           {/* Category badge */}
@@ -85,17 +83,17 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
           >
             {categoryLabels[category][lang]}
           </span>
+        </div>
 
-          {/* Hover overlay — bottom gradient + button with more spacing */}
-          <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-5"
-            style={{ background: `linear-gradient(to top, ${color}22 0%, transparent 55%)` }}
-          >
+        {/* Content */}
+        <div className="p-6 flex flex-col flex-1 relative">
+          {/* Hover button — bottom of content area, not overlapping icon */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
             <span
               className="px-5 py-2 rounded-full text-sm font-medium"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
-                background: `rgba(0,0,0,0.55)`,
+                background: `rgba(0,0,0,0.7)`,
                 border: `1px solid ${color}55`,
                 color,
                 backdropFilter: 'blur(10px)',
@@ -104,10 +102,6 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
               {lang === 'en' ? 'View Details →' : 'Подробнее →'}
             </span>
           </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 flex flex-col flex-1">
           <h3
             className="text-lg font-bold mb-2"
             style={{ fontFamily: 'var(--font-syne)' }}
