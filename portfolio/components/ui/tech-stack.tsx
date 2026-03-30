@@ -91,7 +91,7 @@ export function TechStack() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="h-full"
-              style={{ clipPath: 'inset(-2px round 18px)' }}
+              
             >
               <GlowCard customSize glowColor={cat.glow} className="w-full h-full p-6">
                 <div className="flex items-center gap-3 mb-4">
