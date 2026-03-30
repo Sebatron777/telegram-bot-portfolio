@@ -34,8 +34,8 @@ const borderGlowStyle = `
       white,
       hsl(var(--hue) 100% 60% / 1) 12%,
       hsl(var(--hue) 100% 50% / 0.6) 35%,
-      rgba(255,255,255,0.06) 60%,
-      rgba(255,255,255,0.06)
+      rgba(255,255,255,0.12) 60%,
+      rgba(255,255,255,0.12)
     );
     background-attachment: fixed;
     padding: 1px;
@@ -90,7 +90,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
     >
       <div
         className={`rounded-[15px] h-full overflow-hidden ${innerCls}`}
-        style={{ background: '#0c0c0f' }}
+        style={{ background: 'rgba(255,255,255,0.06)' }}
       >
         {children}
       </div>
