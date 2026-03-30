@@ -49,7 +49,7 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
       whileHover={{ y: -4 }}
       onClick={onClick}
       className="cursor-pointer group h-full"
-      style={{ clipPath: 'inset(0 round 16px)' }}
+      style={{ clipPath: 'inset(-2px round 18px)' }}
     >
       <GlowCard
         customSize
