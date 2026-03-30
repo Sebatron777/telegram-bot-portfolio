@@ -87,28 +87,27 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
         </div>
 
         {/* Content */}
-        <div className="p-6 flex flex-col flex-1 relative">
-          {/* Hover button — bottom of content area, not overlapping icon */}
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+        <div className="p-6 flex flex-col flex-1">
+          {/* Title row with hover arrow button on the right */}
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <h3
+              className="text-lg font-bold leading-snug"
+              style={{ fontFamily: 'var(--font-syne)' }}
+            >
+              {title}
+            </h3>
             <span
-              className="px-5 py-2 rounded-full text-sm font-medium"
+              className="shrink-0 mt-0.5 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-1 group-hover:translate-x-0"
               style={{
-                fontFamily: 'var(--font-dm-sans)',
-                background: `rgba(0,0,0,0.7)`,
-                border: `1px solid ${color}55`,
+                background: `${color}18`,
+                border: `1px solid ${color}45`,
                 color,
-                backdropFilter: 'blur(10px)',
               }}
             >
-              {lang === 'en' ? 'View Details →' : 'Подробнее →'}
+              →
             </span>
           </div>
-          <h3
-            className="text-lg font-bold mb-2"
-            style={{ fontFamily: 'var(--font-syne)' }}
-          >
-            {title}
-          </h3>
+
           <p
             className="text-sm leading-relaxed mb-4 flex-1"
             style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)' }}
