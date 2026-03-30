@@ -28,14 +28,14 @@ const borderGlowStyle = `
     --x: -9999;
     --y: -9999;
     --xp: 0;
-    --spotlight: 220px;
     --hue: calc(var(--base, 190) + (var(--xp, 0) * var(--spread, 180)));
     background-image: radial-gradient(
-      var(--spotlight) var(--spotlight) at
-      calc(var(--x) * 1px) calc(var(--y) * 1px),
-      hsl(var(--hue) 100% 65% / 1),
-      rgba(255,255,255,0.07) 65%,
-      rgba(255,255,255,0.07)
+      400px 400px at calc(var(--x) * 1px) calc(var(--y) * 1px),
+      white,
+      hsl(var(--hue) 100% 60% / 1) 12%,
+      hsl(var(--hue) 100% 50% / 0.6) 35%,
+      rgba(255,255,255,0.06) 60%,
+      rgba(255,255,255,0.06)
     );
     background-attachment: fixed;
     padding: 1px;
