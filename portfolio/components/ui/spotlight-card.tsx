@@ -30,12 +30,12 @@ const borderGlowStyle = `
     --xp: 0;
     --hue: calc(var(--base, 190) + (var(--xp, 0) * var(--spread, 180)));
     background-image: radial-gradient(
-      400px 400px at calc(var(--x) * 1px) calc(var(--y) * 1px),
+      280px 280px at calc(var(--x) * 1px) calc(var(--y) * 1px),
       white,
-      hsl(var(--hue) 100% 60% / 1) 12%,
-      hsl(var(--hue) 100% 50% / 0.6) 35%,
-      rgba(255,255,255,0.12) 60%,
-      rgba(255,255,255,0.12)
+      hsl(var(--hue) 100% 60% / 1) 10%,
+      hsl(var(--hue) 100% 50% / 0.8) 30%,
+      rgba(255,255,255,0.10) 55%,
+      rgba(255,255,255,0.10)
     );
     background-attachment: fixed;
     padding: 1px;
@@ -90,7 +90,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
     >
       <div
         className={`rounded-[15px] h-full overflow-hidden ${innerCls}`}
-        style={{ background: '#16161c' }}
+        style={{ background: 'rgba(20,20,28,0.93)' }}
       >
         {children}
       </div>
