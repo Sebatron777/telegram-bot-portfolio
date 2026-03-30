@@ -90,7 +90,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
     >
       <div
         className={`rounded-[15px] h-full overflow-hidden ${innerCls}`}
-        style={{ background: 'rgba(255,255,255,0.06)' }}
+        style={{ background: '#16161c' }}
       >
         {children}
       </div>
