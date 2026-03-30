@@ -12,41 +12,66 @@ interface GlowCardProps {
   height?: string | number
 }
 
-const glowColorMap: Record<string, string> = {
-  blue:   '#3b82f6',
-  purple: '#8b5cf6',
-  green:  '#00ff88',
-  red:    '#ef4444',
-  orange: '#f97316',
-  cyan:   '#06b6d4',
+// Base hue per color — hue shifts as mouse moves horizontally (like original)
+const glowColorMap = {
+  blue:   { base: 220, spread: 200 },
+  purple: { base: 280, spread: 300 },
+  green:  { base: 120, spread: 200 },
+  red:    { base: 0,   spread: 200 },
+  orange: { base: 30,  spread: 200 },
+  cyan:   { base: 190, spread: 180 },
 }
 
-const dim = 'rgba(255,255,255,0.08)'
+// Injected once — CSS custom props updated by JS pointermove
+const borderGlowStyle = `
+  .glow-border {
+    --x: -9999;
+    --y: -9999;
+    --xp: 0;
+    --spotlight: 220px;
+    --hue: calc(var(--base, 190) + (var(--xp, 0) * var(--spread, 180)));
+    background-image: radial-gradient(
+      var(--spotlight) var(--spotlight) at
+      calc(var(--x) * 1px) calc(var(--y) * 1px),
+      hsl(var(--hue) 100% 65% / 1),
+      rgba(255,255,255,0.07) 65%,
+      rgba(255,255,255,0.07)
+    );
+    background-attachment: fixed;
+    padding: 1px;
+  }
+`
+
+let styleInjected = false
 
 const GlowCard: React.FC<GlowCardProps> = ({
   children,
   className = '',
   glowColor = 'cyan',
-  customSize = false,
 }) => {
   const outerRef = useRef<HTMLDivElement>(null)
-  const color = glowColorMap[glowColor]
+  const { base, spread } = glowColorMap[glowColor]
 
-  // Global pointermove — all cards react simultaneously,
-  // but each calculates mouse position relative to itself → no bleed between cards
+  // Inject shared CSS once
   useEffect(() => {
-    const handlePointerMove = (e: PointerEvent) => {
-      if (!outerRef.current) return
-      const rect = outerRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      outerRef.current.style.background =
-        `radial-gradient(320px circle at ${x}px ${y}px, ${color}, ${dim} 65%)`
-    }
+    if (styleInjected) return
+    const tag = document.createElement('style')
+    tag.textContent = borderGlowStyle
+    document.head.appendChild(tag)
+    styleInjected = true
+  }, [])
 
-    document.addEventListener('pointermove', handlePointerMove)
-    return () => document.removeEventListener('pointermove', handlePointerMove)
-  }, [color])
+  // Single global listener — all cards update simultaneously
+  useEffect(() => {
+    const sync = (e: PointerEvent) => {
+      if (!outerRef.current) return
+      outerRef.current.style.setProperty('--x', e.clientX.toFixed(1))
+      outerRef.current.style.setProperty('--y', e.clientY.toFixed(1))
+      outerRef.current.style.setProperty('--xp', (e.clientX / window.innerWidth).toFixed(3))
+    }
+    document.addEventListener('pointermove', sync)
+    return () => document.removeEventListener('pointermove', sync)
+  }, [])
 
   const parts = className.split(' ')
   const outerCls = parts.filter(c => /^[wh]-/.test(c)).join(' ')
@@ -55,8 +80,13 @@ const GlowCard: React.FC<GlowCardProps> = ({
   return (
     <div
       ref={outerRef}
-      className={`relative rounded-2xl ${outerCls}`}
-      style={{ background: dim, padding: '1px' }}
+      className={`glow-border relative rounded-2xl ${outerCls}`}
+      style={
+        {
+          '--base': base,
+          '--spread': spread,
+        } as React.CSSProperties
+      }
     >
       <div
         className={`rounded-[15px] h-full overflow-hidden ${innerCls}`}
