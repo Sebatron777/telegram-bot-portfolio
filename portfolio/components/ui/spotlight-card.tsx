@@ -11,12 +11,12 @@ interface GlowCardProps {
 }
 
 const glowColorMap: Record<string, { spotlight: string; border: string; shadow: string }> = {
-  blue:   { spotlight: 'rgba(59,130,246,0.14)',  border: 'rgba(59,130,246,0.35)',  shadow: '0 0 24px rgba(59,130,246,0.12)' },
-  purple: { spotlight: 'rgba(124,58,237,0.14)',  border: 'rgba(124,58,237,0.35)',  shadow: '0 0 24px rgba(124,58,237,0.12)' },
-  green:  { spotlight: 'rgba(0,255,136,0.10)',   border: 'rgba(0,255,136,0.35)',   shadow: '0 0 24px rgba(0,255,136,0.10)' },
-  red:    { spotlight: 'rgba(239,68,68,0.14)',   border: 'rgba(239,68,68,0.35)',   shadow: '0 0 24px rgba(239,68,68,0.12)' },
-  orange: { spotlight: 'rgba(249,115,22,0.14)',  border: 'rgba(249,115,22,0.35)',  shadow: '0 0 24px rgba(249,115,22,0.12)' },
-  cyan:   { spotlight: 'rgba(6,182,212,0.14)',   border: 'rgba(6,182,212,0.35)',   shadow: '0 0 24px rgba(6,182,212,0.12)' },
+  blue:   { spotlight: 'rgba(59,130,246,0.22)',  border: 'rgba(59,130,246,0.55)',  shadow: '0 0 40px rgba(59,130,246,0.25), 0 0 80px rgba(59,130,246,0.10)' },
+  purple: { spotlight: 'rgba(124,58,237,0.22)',  border: 'rgba(124,58,237,0.55)',  shadow: '0 0 40px rgba(124,58,237,0.25), 0 0 80px rgba(124,58,237,0.10)' },
+  green:  { spotlight: 'rgba(0,255,136,0.18)',   border: 'rgba(0,255,136,0.55)',   shadow: '0 0 40px rgba(0,255,136,0.22), 0 0 80px rgba(0,255,136,0.08)' },
+  red:    { spotlight: 'rgba(239,68,68,0.22)',   border: 'rgba(239,68,68,0.55)',   shadow: '0 0 40px rgba(239,68,68,0.25), 0 0 80px rgba(239,68,68,0.10)' },
+  orange: { spotlight: 'rgba(249,115,22,0.22)',  border: 'rgba(249,115,22,0.55)',  shadow: '0 0 40px rgba(249,115,22,0.25), 0 0 80px rgba(249,115,22,0.10)' },
+  cyan:   { spotlight: 'rgba(6,182,212,0.22)',   border: 'rgba(6,182,212,0.55)',   shadow: '0 0 40px rgba(6,182,212,0.25), 0 0 80px rgba(6,182,212,0.10)' },
 }
 
 const GlowCard: React.FC<GlowCardProps> = ({
@@ -34,7 +34,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
     const rect = cardRef.current.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
-    overlayRef.current.style.background = `radial-gradient(500px circle at ${x}px ${y}px, ${spotlight}, transparent 60%)`
+    overlayRef.current.style.background = `radial-gradient(700px circle at ${x}px ${y}px, ${spotlight}, transparent 65%)`
   }
 
   const handleMouseEnter = () => {
