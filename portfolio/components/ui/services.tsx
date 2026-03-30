@@ -96,6 +96,7 @@ export function Services() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="h-full"
+              style={{ clipPath: 'inset(0 round 16px)' }}
             >
               <GlowCard customSize glowColor={service.glow} className="w-full h-full p-8 flex flex-col">
                 <div
