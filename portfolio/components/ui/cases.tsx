@@ -5,10 +5,14 @@ import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { CaseCard } from './case-card'
 import { CaseModal, type CaseDetail } from './case-modal'
+import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone } from 'lucide-react'
 
-const cases: CaseDetail[] = [
+type CaseDetailWithIcon = CaseDetail & { icon: React.ReactNode }
+
+const cases: CaseDetailWithIcon[] = [
   {
     title: 'Telegram Inviter Elite',
+    icon: <UserPlus size={36} />,
     category: 'automation',
     stack: ['Python', 'FastAPI', 'Pyrogram', 'SQLite', 'TMA', 'Systemd'],
     descriptionEN: 'High-performance Telegram growth system: multi-account management, 3-level username validation, 24/7 auto-recovery for flood-banned accounts. Interface built as Telegram Mini App.',
@@ -40,6 +44,7 @@ const cases: CaseDetail[] = [
   },
   {
     title: 'AI Auto-Commenter',
+    icon: <Sparkles size={36} />,
     category: 'ai-tool',
     stack: ['Python', 'Pyrogram', 'OpenAI GPT-4o-mini', 'aiogram', 'SQLite'],
     descriptionEN: 'Multi-account system monitoring Telegram channels, generating human-like comments via GPT-4o-mini. 4 persona modes, randomized delays, typing simulation, unique device fingerprints per account.',
@@ -71,6 +76,7 @@ const cases: CaseDetail[] = [
   },
   {
     title: 'EmojiBot — Reaction Manager',
+    icon: <SmilePlus size={36} />,
     category: 'automation',
     stack: ['Python', 'Pyrogram', 'aiogram', 'SQLite', 'Systemd'],
     descriptionEN: 'Multi-userbot reaction system. Account pool management (Active/Flood/Sleeping/Banned), configurable engine: delays, bots per chat, max chats per bot.',
@@ -100,6 +106,7 @@ const cases: CaseDetail[] = [
   },
   {
     title: 'Creator Monetization Bot',
+    icon: <Wallet size={36} />,
     category: 'telegram-bot',
     stack: ['Python', 'aiogram 3.x', 'Supabase', 'Tribute', 'Telegram Stars'],
     descriptionEN: 'Monetization bot for content creators. Multiple payment systems, auto-delivery of content (links, files, usernames) after purchase. Bilingual RU/EN, broadcasts, admin panel with stats.',
@@ -131,6 +138,7 @@ const cases: CaseDetail[] = [
   },
   {
     title: 'TG Userbot Manager',
+    icon: <Megaphone size={36} />,
     category: 'automation',
     stack: ['Python', 'Pyrogram', 'aiogram', 'SQLite', 'Systemd'],
     descriptionEN: 'Full broadcast platform. Campaign management (create/pause/resume), templates with randomization {v1|v2}, round-robin account rotation, anti-flood with auto-recovery, access control via admin approval.',
@@ -161,6 +169,8 @@ const cases: CaseDetail[] = [
     resultRU: 'Платформа используется для постоянных рассылок. Комбинация round-robin + антифлуд снизила процент банов на ~80% по сравнению с одноаккаунтным подходом.',
   },
 ]
+
+import React from 'react'
 
 type Filter = 'all' | 'telegram-bot' | 'automation' | 'ai-tool'
 
@@ -219,7 +229,7 @@ export function Cases() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {filtered.map(c => (
             <CaseCard
               key={c.title}

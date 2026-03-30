@@ -87,7 +87,7 @@ export function Services() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {services.map((service, i) => (
             <motion.div
               key={service.titleEN}
@@ -95,9 +95,9 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              style={{ clipPath: 'inset(0 round 16px)' }}
+              className="h-full"
             >
-              <GlowCard customSize glowColor={service.glow} className="w-full p-8">
+              <GlowCard customSize glowColor={service.glow} className="w-full h-full p-8 flex flex-col">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{ background: `${glowColors[service.glow]}15`, border: `1px solid ${glowColors[service.glow]}30`, color: glowColors[service.glow] }}
@@ -111,12 +111,12 @@ export function Services() {
                   {lang === 'en' ? service.titleEN : service.titleRU}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed mb-5"
+                  className="text-sm leading-relaxed mb-5 flex-1"
                   style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)' }}
                 >
                   {lang === 'en' ? service.descEN : service.descRU}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-auto">
                   {service.tags.map(tag => (
                     <StackBadge key={tag}>{tag}</StackBadge>
                   ))}

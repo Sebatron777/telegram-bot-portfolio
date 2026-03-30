@@ -82,7 +82,7 @@ export function TechStack() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.titleEN}
@@ -90,9 +90,9 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              style={{ clipPath: 'inset(0 round 16px)' }}
+              className="h-full"
             >
-              <GlowCard customSize glowColor={cat.glow} className="w-full p-6">
+              <GlowCard customSize glowColor={cat.glow} className="w-full h-full p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center"

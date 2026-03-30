@@ -4,7 +4,7 @@ import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { StackBadge } from './stack-badge'
 import { GlowCard } from './spotlight-card'
-import { Bot, Cog, Brain } from 'lucide-react'
+import type { ReactNode } from 'react'
 
 interface CaseCardProps {
   title: string
@@ -14,28 +14,29 @@ interface CaseCardProps {
   descriptionRU: string
   highlights: string[]
   screenshots?: string[]
+  icon?: ReactNode
   onClick?: () => void
 }
 
 const categoryColors: Record<string, string> = {
   'telegram-bot': '#06b6d4',
-  'automation': '#f97316',
-  'ai-tool': '#7c3aed',
+  'automation':   '#f97316',
+  'ai-tool':      '#7c3aed',
 }
 
 const categoryGlow: Record<string, 'cyan' | 'orange' | 'purple'> = {
   'telegram-bot': 'cyan',
-  'automation': 'orange',
-  'ai-tool': 'purple',
+  'automation':   'orange',
+  'ai-tool':      'purple',
 }
 
 const categoryLabels: Record<string, { en: string; ru: string }> = {
   'telegram-bot': { en: 'Telegram Bot', ru: 'Telegram Бот' },
-  'automation': { en: 'Automation', ru: 'Автоматизация' },
-  'ai-tool': { en: 'AI Tool', ru: 'AI инструмент' },
+  'automation':   { en: 'Automation',   ru: 'Автоматизация' },
+  'ai-tool':      { en: 'AI Tool',      ru: 'AI инструмент' },
 }
 
-export function CaseCard({ title, category, stack, descriptionEN, descriptionRU, highlights, screenshots, onClick }: CaseCardProps) {
+export function CaseCard({ title, category, stack, descriptionEN, descriptionRU, highlights, icon, onClick }: CaseCardProps) {
   const { lang } = useLang()
   const color = categoryColors[category]
 
@@ -47,25 +48,28 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
       transition={{ duration: 0.5 }}
       whileHover={{ y: -4 }}
       onClick={onClick}
-      className="cursor-pointer group"
-      style={{ clipPath: 'inset(0 round 16px)' }}
+      className="cursor-pointer group h-full"
     >
       <GlowCard
         customSize
         glowColor={categoryGlow[category]}
-        className="w-full flex flex-col"
+        className="w-full h-full flex flex-col"
       >
         {/* Visual area */}
         <div
-          className="w-full h-44 relative overflow-hidden rounded-t-2xl rounded-b-xl"
+          className="w-full h-44 relative flex-shrink-0"
           style={{ background: 'rgba(255,255,255,0.03)' }}
         >
           <div className="w-full h-full flex items-center justify-center">
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-              style={{ background: `${color}20`, border: `1px solid ${color}40`, color }}
+              className="w-20 h-20 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+              style={{
+                background: `${color}15`,
+                border: `1px solid ${color}35`,
+                color,
+              }}
             >
-              {category === 'telegram-bot' ? <Bot size={28} /> : category === 'automation' ? <Cog size={28} /> : <Brain size={28} />}
+              {icon}
             </div>
           </div>
 
@@ -74,27 +78,27 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
             className="absolute top-3 left-3 text-xs px-2.5 py-1 rounded-full font-medium"
             style={{
               fontFamily: 'var(--font-jetbrains)',
-              background: `${color}20`,
-              border: `1px solid ${color}50`,
-              color: color,
+              background: `${color}18`,
+              border: `1px solid ${color}45`,
+              color,
             }}
           >
             {categoryLabels[category][lang]}
           </span>
 
-          {/* Hover overlay */}
+          {/* Hover overlay — bottom gradient + button with more spacing */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-4"
-            style={{ background: `linear-gradient(to top, ${color}18 0%, transparent 60%)` }}
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-center pb-5"
+            style={{ background: `linear-gradient(to top, ${color}22 0%, transparent 55%)` }}
           >
             <span
-              className="px-4 py-1.5 rounded-full text-sm font-medium"
+              className="px-5 py-2 rounded-full text-sm font-medium"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
-                background: `${color}22`,
+                background: `rgba(0,0,0,0.55)`,
                 border: `1px solid ${color}55`,
-                color: color,
-                backdropFilter: 'blur(8px)',
+                color,
+                backdropFilter: 'blur(10px)',
               }}
             >
               {lang === 'en' ? 'View Details →' : 'Подробнее →'}
@@ -111,7 +115,7 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
             {title}
           </h3>
           <p
-            className="text-sm leading-relaxed mb-4"
+            className="text-sm leading-relaxed mb-4 flex-1"
             style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)' }}
           >
             {lang === 'en' ? descriptionEN : descriptionRU}

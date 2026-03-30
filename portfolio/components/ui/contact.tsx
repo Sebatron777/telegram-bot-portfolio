@@ -83,7 +83,7 @@ export function Contact() {
           </p>
 
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex items-center justify-center mb-12">
             <a
               href="https://t.me/Djo_ny01"
               target="_blank"
@@ -96,17 +96,6 @@ export function Contact() {
               }}
             >
               {lang === 'en' ? 'Write on Telegram' : 'Написать в Telegram'}
-            </a>
-            <a
-              href="mailto:serhii.lysak77@gmail.com"
-              className="px-10 py-4 rounded-full text-base font-medium transition-all duration-200 hover:bg-white/10"
-              style={{
-                fontFamily: 'var(--font-dm-sans)',
-                border: '1px solid rgba(255,255,255,0.2)',
-                color: 'rgba(255,255,255,0.75)',
-              }}
-            >
-              serhii.lysak77@gmail.com
             </a>
           </div>
 
