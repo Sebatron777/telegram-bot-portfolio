@@ -18,7 +18,6 @@ const cases: CaseDetailWithIcon[] = [
     descriptionEN: 'High-performance Telegram growth system: multi-account management, 3-level username validation, 24/7 auto-recovery for flood-banned accounts. Interface built as Telegram Mini App.',
     descriptionRU: 'Система роста Telegram: мультиаккаунты, 3-уровневая валидация юзернеймов, 24/7 авто-восстановление аккаунтов. Интерфейс — Telegram Mini App.',
     highlights: ['TMA interface', 'Multi-proxy', 'Auto-recovery', 'Smart batching'],
-    screenshots: ['/screenshots/inviter-elite-1.png', '/screenshots/inviter-elite-2.png', '/screenshots/inviter-elite-3.png', '/screenshots/inviter-elite-4.png'],
     featuresEN: [
       'Multi-account pool management — add, remove, monitor account health in real time',
       '3-level username validation: format check → existence check → mutual contacts filter',
@@ -50,7 +49,6 @@ const cases: CaseDetailWithIcon[] = [
     descriptionEN: 'Multi-account system monitoring Telegram channels, generating human-like comments via GPT-4o-mini. 4 persona modes, randomized delays, typing simulation, unique device fingerprints per account.',
     descriptionRU: 'Мультиаккаунт мониторинг каналов + AI-генерация комментариев через GPT-4o-mini. 4 режима персоны, задержки, симуляция печати, уникальные fingerprints.',
     highlights: ['GPT-4o-mini', '4 personas', 'Anti-detection', 'Channels + groups'],
-    screenshots: [],
     featuresEN: [
       '4 AI persona modes: expert, casual user, skeptic, enthusiast — different tone per account',
       'Context-aware comment generation — GPT reads the post before generating a reply',
@@ -82,7 +80,6 @@ const cases: CaseDetailWithIcon[] = [
     descriptionEN: 'Multi-userbot reaction system. Account pool management (Active/Flood/Sleeping/Banned), configurable engine: delays, bots per chat, max chats per bot.',
     descriptionRU: 'Мультиюзербот-система реакций. Пул аккаунтов, настройки движка: задержки, ботов на чат, лимит чатов на бота.',
     highlights: ['Account pool', 'Configurable engine', 'Real-time stats'],
-    screenshots: ['/screenshots/emoji-bot-1.png', '/screenshots/emoji-bot-2.png'],
     featuresEN: [
       'Account state machine: Active → Flood → Sleeping → Banned, with auto-transitions',
       'Configurable reaction engine: min/max delay, max bots per chat, max chats per bot',
@@ -112,7 +109,6 @@ const cases: CaseDetailWithIcon[] = [
     descriptionEN: 'Monetization bot for content creators. Multiple payment systems, auto-delivery of content (links, files, usernames) after purchase. Bilingual RU/EN, broadcasts, admin panel with stats.',
     descriptionRU: 'Бот монетизации для creators. Несколько платёжных систем, авто-выдача контента после оплаты. RU/EN, рассылки, admin-панель.',
     highlights: ['Multi-payment', 'Auto-delivery', 'RU/EN', 'Admin panel'],
-    screenshots: ['/screenshots/creator-bot.png'],
     featuresEN: [
       'Multiple payment integrations: Telegram Stars (native), Tribute, with easy extensibility',
       'Auto-delivery engine: links, files, closed group usernames — instant on payment confirmation',
@@ -144,7 +140,6 @@ const cases: CaseDetailWithIcon[] = [
     descriptionEN: 'Full broadcast platform. Campaign management (create/pause/resume), templates with randomization {v1|v2}, round-robin account rotation, anti-flood with auto-recovery, access control via admin approval.',
     descriptionRU: 'Платформа рассылок. Кампании, шаблоны с рандомизацией {вар1|вар2}, round-robin ротация, антифлуд, контроль доступа через одобрение.',
     highlights: ['Campaigns', 'Template randomization', 'Round-robin', 'Access control'],
-    screenshots: ['/screenshots/userbot-manager.png'],
     featuresEN: [
       'Campaign lifecycle management: create → run → pause → resume → archive',
       'Message template engine with inline randomization syntax: {Hello|Hi|Hey}, {friend|mate}',

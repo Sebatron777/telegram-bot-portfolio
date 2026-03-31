@@ -20,7 +20,6 @@ export interface CaseDetail {
   challengeRU?: string
   resultEN?: string
   resultRU?: string
-  screenshots?: string[]
 }
 
 const categoryColors: Record<string, string> = {
@@ -153,45 +152,6 @@ export function CaseModal({ item, onClose }: CaseModalProps) {
                   {lang === 'en' ? item.descriptionEN : item.descriptionRU}
                 </p>
 
-                {/* Screenshots */}
-                {item.screenshots && item.screenshots.length > 0 && (
-                  <div>
-                    <h3
-                      className="text-sm font-semibold mb-3 uppercase tracking-wider"
-                      style={{ fontFamily: 'var(--font-jetbrains)', color: color }}
-                    >
-                      {lang === 'en' ? 'Screenshots' : 'Скриншоты'}
-                    </h3>
-                    <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 snap-x snap-mandatory">
-                      {item.screenshots.map((src, i) => (
-                        <div
-                          key={i}
-                          className="shrink-0 w-full rounded-xl overflow-hidden snap-center"
-                          style={{ border: '1px solid rgba(255,255,255,0.08)' }}
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={src}
-                            alt={`${item.title} screenshot ${i + 1}`}
-                            className="w-full h-auto object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    {item.screenshots.length > 1 && (
-                      <div className="flex justify-center gap-1.5 mt-3">
-                        {item.screenshots.map((_, i) => (
-                          <span
-                            key={i}
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{ background: i === 0 ? color : 'rgba(255,255,255,0.2)' }}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
 
                 {/* Features */}
                 {((lang === 'en' && item.featuresEN) || (lang === 'ru' && item.featuresRU)) && (

@@ -13,7 +13,6 @@ interface CaseCardProps {
   descriptionEN: string
   descriptionRU: string
   highlights: string[]
-  screenshots?: string[]
   icon?: ReactNode
   onClick?: () => void
 }
@@ -42,14 +41,12 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      whileHover={{ y: -4 }}
       onClick={onClick}
       className="cursor-pointer group h-full"
-      
     >
       <GlowCard
         customSize

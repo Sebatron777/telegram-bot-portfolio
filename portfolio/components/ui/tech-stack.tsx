@@ -86,8 +86,8 @@ export function TechStack() {
           {categories.map((cat, i) => (
             <motion.div
               key={cat.titleEN}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="h-full"
