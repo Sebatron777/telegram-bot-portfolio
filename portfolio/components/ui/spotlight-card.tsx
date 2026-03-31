@@ -30,15 +30,36 @@ const borderGlowStyle = `
     --xp: 0;
     --hue: calc(var(--base, 190) + (var(--xp, 0) * var(--spread, 180)));
     background-image: radial-gradient(
-      600px 600px at calc(var(--x) * 1px) calc(var(--y) * 1px),
+      450px 450px at calc(var(--x) * 1px) calc(var(--y) * 1px),
       hsl(var(--hue) 100% 70% / 0.9) 0%,
-      hsl(var(--hue) 100% 55% / 0.7) 25%,
-      hsl(var(--hue) 80% 40% / 0.3) 50%,
-      rgba(255,255,255,0.10) 70%,
-      rgba(255,255,255,0.10)
+      hsl(var(--hue) 100% 60% / 0.5) 15%,
+      hsl(var(--hue) 80% 45% / 0.15) 35%,
+      rgba(255,255,255,0.05) 55%,
+      rgba(255,255,255,0.03)
     );
     background-attachment: fixed;
     padding: 1px;
+  }
+
+  .glow-inner {
+    position: relative;
+  }
+
+  .glow-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px 500px at calc(var(--x) * 1px) calc(var(--y) * 1px),
+      hsl(var(--hue) 100% 65% / 0.15) 0%,
+      hsl(var(--hue) 90% 55% / 0.07) 20%,
+      hsl(var(--hue) 80% 45% / 0.02) 40%,
+      transparent 60%
+    );
+    background-attachment: fixed;
+    pointer-events: none;
+    z-index: 1;
   }
 `
 
@@ -89,7 +110,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       }
     >
       <div
-        className={`rounded-[15px] h-full overflow-hidden ${innerCls}`}
+        className={`glow-inner rounded-[15px] h-full overflow-hidden ${innerCls}`}
         style={{ background: '#13131a' }}
       >
         {children}
