@@ -135,7 +135,7 @@ export function Hero() {
                 {lang === 'en' ? 'View Cases ↓' : 'Смотреть кейсы ↓'}
               </a>
               <a
-                href="https://t.me/Djo_ny01"
+                href="https://t.me/ad_min_group"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 rounded-full text-base font-semibold transition-all duration-200 hover:opacity-90"

@@ -85,7 +85,7 @@ export function Contact() {
           {/* CTA buttons */}
           <div className="flex items-center justify-center mb-12">
             <a
-              href="https://t.me/Djo_ny01"
+              href="https://t.me/ad_min_group"
               target="_blank"
               rel="noopener noreferrer"
               className="px-10 py-4 rounded-full text-base font-semibold transition-all duration-200 hover:opacity-90 hover:scale-105"

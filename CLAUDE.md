@@ -327,7 +327,7 @@ and interesting automation challenges."
 RU subtext: "Открыт к фриланс-проектам, долгосрочным контрактам
 и интересным задачам по автоматизации."
 
-Primary:   "Write on Telegram" → https://t.me/Djo_ny01
+Primary:   "Write on Telegram" → https://t.me/ad_min_group
 Secondary: "serhii.lysak77@gmail.com"
 GitHub:    github.com/Sebatron777
 
