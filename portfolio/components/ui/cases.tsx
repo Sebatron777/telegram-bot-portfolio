@@ -6,7 +6,7 @@ import { useLang } from '@/context/lang'
 import { CaseCard } from './case-card'
 
 import { CaseModal, type CaseDetail } from './case-modal'
-import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone, ShoppingCart, Linkedin } from 'lucide-react'
+import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone, ShoppingCart, Briefcase } from 'lucide-react'
 
 type CaseDetailWithIcon = CaseDetail & { icon: React.ReactNode }
 
@@ -194,7 +194,7 @@ const cases: CaseDetailWithIcon[] = [
   },
   {
     title: 'LinkedIn AI Auto-Poster',
-    icon: <Linkedin size={36} />,
+    icon: <Briefcase size={36} />,
     category: 'automation',
     stack: ['Node.js', 'OpenAI', 'Gemini', 'Flux AI', 'LinkedIn API', 'PM2'],
     descriptionEN: 'Autonomous content generation and posting system for LinkedIn. Scrapes daily news or takes custom topics, generates expert-level posts with AI, creates stylized corporate images via Flux, and publishes directly via LinkedIn API.',
