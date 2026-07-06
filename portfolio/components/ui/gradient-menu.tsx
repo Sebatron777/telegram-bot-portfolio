@@ -17,22 +17,38 @@ export function GradientMenu() {
   const { lang, toggle } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100)
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300"
       style={{
-        background: scrolled ? 'rgba(0,0,0,0.8)' : 'transparent',
+        background: scrolled ? 'rgba(5,5,6,0.85)' : 'rgba(5,5,6,0)',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : 'none',
+        borderBottom: `1px solid ${scrolled ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0)'}`,
       }}
     >
+      {/* Scroll Progress Bar */}
+      <div
+        className="absolute top-0 left-0 h-[2px] transition-all duration-75"
+        style={{
+          width: `${scrollProgress}%`,
+          background: 'linear-gradient(to right, #06b6d4, #f97316)',
+          boxShadow: '0 0 8px rgba(6,182,212,0.8)',
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <span
@@ -48,54 +64,36 @@ export function GradientMenu() {
             <a
               key={item.titleEN}
               href={item.href}
-              className="group relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
+              className="group relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105"
               style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)' }}
             >
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 relative z-10">
                 <span
-                  className="text-base transition-all duration-200"
+                  className="text-base transition-all duration-300 group-hover:scale-110"
                   style={{ color: 'rgba(255,255,255,0.4)' }}
                 >
                   {item.icon}
                 </span>
                 <span
-                  className="group-hover:text-white transition-colors duration-200"
-                  style={{
-                    background: `linear-gradient(135deg, ${item.gradientFrom}, ${item.gradientTo})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    opacity: 0,
-                  }}
+                  className="transition-all duration-200"
+                  style={{ color: 'rgba(255,255,255,0.6)' }}
                 >
                   {lang === 'en' ? item.titleEN : item.titleRU}
                 </span>
-                <span
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full"
-                  style={{ background: 'rgba(255,255,255,0.05)' }}
-                />
               </span>
+              {/* Hover background pill */}
               <span
-                className="absolute inset-0 flex items-center justify-center gap-2 px-4"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
+                style={{ background: 'rgba(255,255,255,0.06)' }}
+              />
+              {/* Animated gradient underline */}
+              <span
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 group-hover:w-3/4 transition-all duration-300 rounded-full"
                 style={{
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: '0.875rem',
-                  fontWeight: 500,
+                  background: `linear-gradient(to right, ${item.gradientFrom}, ${item.gradientTo})`,
+                  boxShadow: `0 0 6px ${item.gradientFrom}80`,
                 }}
-              >
-                <span style={{ color: 'rgba(255,255,255,0.4)' }}>{item.icon}</span>
-                <span
-                  className="group-hover:opacity-100 transition-all duration-200"
-                  style={{
-                    background: `linear-gradient(135deg, ${item.gradientFrom}, ${item.gradientTo})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  {lang === 'en' ? item.titleEN : item.titleRU}
-                </span>
-              </span>
+              />
             </a>
           ))}
         </div>
@@ -104,7 +102,7 @@ export function GradientMenu() {
         <div className="flex items-center gap-3">
           <button
             onClick={toggle}
-            className="text-xs font-mono px-3 py-1.5 rounded-full transition-all duration-200"
+            className="text-xs font-mono px-3 py-1.5 rounded-full transition-all duration-200 hover:scale-110 hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]"
             style={{
               fontFamily: 'var(--font-jetbrains)',
               border: '1px solid rgba(255,255,255,0.15)',

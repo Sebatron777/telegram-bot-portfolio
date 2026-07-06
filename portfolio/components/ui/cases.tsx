@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { CaseCard } from './case-card'
+
 import { CaseModal, type CaseDetail } from './case-modal'
 import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone, ShoppingCart, Linkedin } from 'lucide-react'
 
@@ -241,13 +242,14 @@ export function Cases() {
   const filtered = active === 'all' ? cases : cases.filter(c => c.category === active)
 
   return (
-    <section id="cases" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="cases" className="relative py-24 px-6 overflow-hidden">
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10"
         >
           <h2
@@ -267,12 +269,13 @@ export function Cases() {
             <button
               key={f.key}
               onClick={() => setActive(f.key)}
-              className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
+              className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
                 background: active === f.key ? 'rgba(6,182,212,0.15)' : 'rgba(255,255,255,0.05)',
                 border: active === f.key ? '1px solid rgba(6,182,212,0.4)' : '1px solid rgba(255,255,255,0.1)',
                 color: active === f.key ? '#06b6d4' : 'rgba(255,255,255,0.6)',
+                boxShadow: active === f.key ? '0 0 16px rgba(6,182,212,0.2)' : 'none',
               }}
             >
               {lang === 'en' ? f.labelEN : f.labelRU}

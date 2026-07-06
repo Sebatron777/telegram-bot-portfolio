@@ -1,35 +1,22 @@
 'use client'
 
-import { MeshGradient } from '@paper-design/shaders-react'
 import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { TgChatDemo } from './tg-chat-demo'
+
 
 export function Hero() {
   const { lang } = useLang()
 
   return (
     <section id="hero" className="relative w-full min-h-screen flex flex-col justify-end pt-28 pb-16 overflow-hidden">
-      {/* Shader background */}
-      <div className="absolute inset-0 z-0">
-        <MeshGradient
-          style={{ width: '100%', height: '100%' }}
-          colors={["#000000", "#06b6d4", "#0891b2", "#164e63", "#f97316"]}
-          speed={0.3}
-        />
-      </div>
-
-      {/* Wireframe overlay */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <MeshGradient
-          style={{ width: '100%', height: '100%' }}
-          colors={["#000000", "#ffffff", "#06b6d4", "#f97316"]}
-          speed={0.2}
-        />
-      </div>
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 z-0" style={{ background: 'rgba(0,0,0,0.45)' }} />
+      {/* Background Linear Gradient Backplate: dark on the left for text contrast, transparent on the right for graphics */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0" 
+        style={{ 
+          background: 'linear-gradient(to right, rgba(5, 5, 6, 0.85) 0%, rgba(5, 5, 6, 0.60) 45%, rgba(5, 5, 6, 0.08) 80%, transparent 100%)' 
+        }} 
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -78,26 +65,21 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mb-6"
             >
-              <h1 className="leading-none" style={{ fontFamily: 'var(--font-syne)' }}>
-                <span
-                  className="block text-4xl md:text-6xl lg:text-7xl font-light"
-                  style={{
-                    background: 'linear-gradient(135deg, #06b6d4, #f97316)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  {lang === 'en' ? 'I Build' : 'Создаю'}
+              <h1 className="leading-tight" style={{ fontFamily: 'var(--font-syne)', lineHeight: lang === 'ru' ? 1.20 : 1.10 }}>
+                <span className="block text-4xl md:text-6xl lg:text-7xl font-semibold text-white mb-2">
+                  {lang === 'en' ? 'I Build' : 'Разработка'}
                 </span>
-                <span className="block text-4xl md:text-6xl lg:text-7xl font-black text-white">
-                  {lang === 'en' ? 'Telegram Bots' : 'Telegram-ботов'}
+                <span 
+                  className="block text-4xl md:text-6xl lg:text-7xl font-black text-white"
+                  style={{ letterSpacing: lang === 'ru' ? '-0.02em' : 'normal' }}
+                >
+                  {lang === 'en' ? 'Telegram Bots' : 'TELEGRAM BOTS'}
                 </span>
                 <span
-                  className="block text-3xl md:text-5xl lg:text-6xl font-light italic"
-                  style={{ color: 'rgba(255,255,255,0.8)' }}
+                  className="block text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-3"
+                  style={{ color: 'rgba(255,255,255,0.85)' }}
                 >
-                  {lang === 'en' ? 'That Actually Work.' : 'которые реально работают.'}
+                  {lang === 'en' ? 'That Actually Work.' : 'Профессиональные решения.'}
                 </span>
               </h1>
             </motion.div>
@@ -108,7 +90,16 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mb-10 max-w-xl text-base md:text-lg leading-relaxed"
-              style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)', fontWeight: 300 }}
+              style={{ 
+                color: 'rgba(255,255,255,0.85)', 
+                fontFamily: 'var(--font-dm-sans)', 
+                fontWeight: 500,
+                background: 'linear-gradient(90deg, rgba(5, 5, 6, 0.75) 0%, rgba(5, 5, 6, 0.25) 75%, transparent 100%)',
+                padding: '12px 20px',
+                borderRadius: '12px',
+                borderLeft: '2px solid rgba(6, 182, 212, 0.35)',
+                marginLeft: '-20px',
+              }}
             >
               {lang === 'en'
                 ? 'Multi-account automation systems, AI-powered bots, Telegram Mini Apps — Python, FastAPI & Pyrogram. 24/7 on VPS.'
@@ -124,28 +115,41 @@ export function Hero() {
             >
               <a
                 href="#cases"
-                className="px-8 py-4 rounded-full text-base font-medium transition-all duration-200 hover:bg-white/10"
+                className="group px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.25)]"
                 style={{
                   fontFamily: 'var(--font-dm-sans)',
-                  border: '1px solid rgba(255,255,255,0.25)',
-                  color: 'rgba(255,255,255,0.85)',
+                  border: '1px solid rgba(6,182,212,0.45)',
+                  color: 'rgba(255,255,255,0.9)',
                   backdropFilter: 'blur(8px)',
                 }}
               >
-                {lang === 'en' ? 'View Cases ↓' : 'Смотреть кейсы ↓'}
+                <span className="inline-flex items-center gap-2">
+                  {lang === 'en' ? 'View Cases' : 'Смотреть кейсы'}
+                  <span className="inline-block transition-transform duration-300 group-hover:translate-y-1">↓</span>
+                </span>
               </a>
               <a
                 href="https://t.me/ad_min_group"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-full text-base font-semibold transition-all duration-200 hover:opacity-90"
+                className="group relative px-8 py-4 rounded-full text-base font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,255,136,0.35)] overflow-hidden"
                 style={{
                   fontFamily: 'var(--font-dm-sans)',
-                  background: 'linear-gradient(135deg, #06b6d4, #f97316)',
-                  color: '#ffffff',
+                  background: 'linear-gradient(135deg, #00ff88 0%, #06b6d4 100%)',
+                  color: '#050506', // dark text for high contrast on neon bright gradient button
                 }}
               >
-                {lang === 'en' ? 'Hire Me' : 'Написать'}
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  {lang === 'en' ? 'Hire Me' : 'Написать'}
+                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </span>
+                {/* Shimmer overlay on hover */}
+                <span
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%, rgba(255,255,255,0.15) 100%)',
+                  }}
+                />
               </a>
             </motion.div>
           </div>

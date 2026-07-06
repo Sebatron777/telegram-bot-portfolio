@@ -41,37 +41,26 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-30px' }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       onClick={onClick}
-      className="cursor-pointer group h-full"
+      className="cursor-pointer group h-full flex flex-col items-stretch"
     >
       <GlowCard
         customSize
         glowColor={categoryGlow[category]}
         className="w-full h-full flex flex-col"
       >
-        {/* Visual area */}
+        {/* Compact Visual Header Area */}
         <div
-          className="w-full h-44 relative flex-shrink-0 flex items-center justify-center"
-          style={{ background: 'rgba(255,255,255,0.03)' }}
+          className="w-full h-16 relative flex-shrink-0 flex items-center justify-between px-4 border-b border-white/5"
+          style={{ background: 'rgba(255,255,255,0.015)' }}
         >
-          <div
-            className="w-20 h-20 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-            style={{
-              background: `${color}15`,
-              border: `1px solid ${color}35`,
-              color,
-            }}
-          >
-            {icon}
-          </div>
-
           {/* Category badge */}
           <span
-            className="absolute top-3 left-3 text-xs px-2.5 py-1 rounded-full font-medium"
+            className="text-[0.7rem] px-2.5 py-1 rounded-full font-medium"
             style={{
               fontFamily: 'var(--font-jetbrains)',
               background: `${color}18`,
@@ -81,12 +70,26 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
           >
             {categoryLabels[category][lang]}
           </span>
+
+          {/* Compact Corner Icon Box */}
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
+            style={{
+              background: `${color}15`,
+              border: `1px solid ${color}35`,
+              color,
+            }}
+          >
+            <div className="scale-[0.62] flex items-center justify-center">
+              {icon}
+            </div>
+          </div>
         </div>
 
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
           {/* Title row with hover arrow button on the right */}
-          <div className="flex items-start justify-between gap-3 mb-2">
+          <div className="flex items-start justify-between gap-3 mb-4">
             <h3
               className="text-lg font-bold leading-snug"
               style={{ fontFamily: 'var(--font-syne)' }}
@@ -94,7 +97,7 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
               {title}
             </h3>
             <span
-              className="shrink-0 mt-0.5 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-1 group-hover:translate-x-0"
+              className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-1 group-hover:translate-x-0"
               style={{
                 background: `${color}18`,
                 border: `1px solid ${color}45`,
@@ -106,23 +109,23 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
           </div>
 
           <p
-            className="text-sm leading-relaxed mb-4 flex-1"
-            style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)' }}
+            className="text-sm leading-relaxed mb-6 flex-1"
+            style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'var(--font-dm-sans)' }}
           >
             {lang === 'en' ? descriptionEN : descriptionRU}
           </p>
 
           {/* Highlights */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-1.5 mb-5 mt-2">
             {highlights.map(h => (
               <span
                 key={h}
-                className="text-xs px-2 py-0.5 rounded"
+                className="text-[0.7rem] px-2 py-0.5 rounded"
                 style={{
                   fontFamily: 'var(--font-jetbrains)',
-                  background: 'rgba(255,255,255,0.06)',
-                  color: 'rgba(255,255,255,0.6)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: 'rgba(255,255,255,0.04)',
+                  color: 'rgba(255,255,255,0.5)',
+                  border: '1px solid rgba(255,255,255,0.06)',
                 }}
               >
                 {h}
@@ -131,9 +134,14 @@ export function CaseCard({ title, category, stack, descriptionEN, descriptionRU,
           </div>
 
           {/* Stack */}
-          <div className="flex flex-wrap gap-2 mt-auto">
+          <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5">
             {stack.map(s => (
-              <StackBadge key={s}>{s}</StackBadge>
+              <StackBadge 
+                key={s}
+                className="bg-white/3 border border-white/8 text-white/40 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 group-hover:text-cyan-400"
+              >
+                {s}
+              </StackBadge>
             ))}
           </div>
         </div>

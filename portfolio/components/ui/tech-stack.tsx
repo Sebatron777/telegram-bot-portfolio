@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { StackBadge } from './stack-badge'
 import { GlowCard } from './spotlight-card'
+
 import { Server, Database, Cloud, Brain, Monitor, Wrench } from 'lucide-react'
 import { type ReactNode } from 'react'
 
@@ -62,13 +63,13 @@ export function TechStack() {
   const { lang } = useLang()
 
   return (
-    <section id="stack" className="py-24 px-6" style={{ background: '#0a0a0c' }}>
-      <div className="max-w-7xl mx-auto">
+    <section id="stack" className="relative py-24 px-6 overflow-hidden" style={{ background: 'rgba(5,5,6,0.12)' }}>
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12"
         >
           <h2
@@ -77,7 +78,7 @@ export function TechStack() {
           >
             {lang === 'en' ? 'Tech Stack' : 'Технологии'}
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-dm-sans)' }}>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'var(--font-dm-sans)' }}>
             {lang === 'en' ? 'Tools I use to build production systems' : 'Инструменты для продакшен-систем'}
           </p>
         </motion.div>
@@ -86,12 +87,11 @@ export function TechStack() {
           {categories.map((cat, i) => (
             <motion.div
               key={cat.titleEN}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="h-full"
-              
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full flex flex-col items-stretch group"
             >
               <GlowCard customSize glowColor={cat.glow} className="w-full h-full p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -110,7 +110,12 @@ export function TechStack() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {cat.tags.map(tag => (
-                    <StackBadge key={tag}>{tag}</StackBadge>
+                    <StackBadge 
+                      key={tag}
+                      className="bg-white/3 border border-white/8 text-white/40 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 group-hover:text-cyan-400"
+                    >
+                      {tag}
+                    </StackBadge>
                   ))}
                 </div>
               </GlowCard>

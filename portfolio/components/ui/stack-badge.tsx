@@ -2,18 +2,18 @@ import { ReactNode } from 'react'
 
 interface StackBadgeProps {
   children: ReactNode
+  className?: string
 }
 
-export function StackBadge({ children }: StackBadgeProps) {
+export function StackBadge({ children, className = '' }: StackBadgeProps) {
+  const baseClasses = "inline-flex items-center px-2.5 py-1 text-xs rounded-md font-mono tracking-wider transition-all duration-300"
+  const defaultClasses = "bg-cyan-500/8 border border-cyan-500/25 text-cyan-400"
+  
   return (
     <span
-      className="inline-flex items-center px-2.5 py-1 text-xs rounded-md"
+      className={`${baseClasses} ${className || defaultClasses}`}
       style={{
         fontFamily: 'var(--font-jetbrains)',
-        background: 'rgba(6,182,212,0.08)',
-        border: '1px solid rgba(6,182,212,0.25)',
-        color: '#06b6d4',
-        letterSpacing: '0.02em',
       }}
     >
       {children}

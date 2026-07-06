@@ -70,7 +70,7 @@ export function TgChatDemo() {
       transition={{ duration: 0.6, delay: 0.8 }}
       className="w-64 flex flex-col rounded-2xl overflow-hidden shadow-2xl"
       style={{
-        background: 'rgba(10, 10, 20, 0.88)',
+        background: 'rgba(10, 10, 20, 0.55)',
         border: '1px solid rgba(255,255,255,0.1)',
         backdropFilter: 'blur(20px)',
       }}

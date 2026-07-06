@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { StackBadge } from './stack-badge'
 import { GlowCard } from './spotlight-card'
+
 import { Bot, Cog, Brain, Smartphone, Globe } from 'lucide-react'
 import { type ReactNode } from 'react'
 
@@ -67,13 +68,13 @@ export function Services() {
   const { lang } = useLang()
 
   return (
-    <section id="services" className="py-24 px-6" style={{ background: '#0a0a0c' }}>
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="relative py-24 px-6 overflow-hidden" style={{ background: 'rgba(5,5,6,0.12)' }}>
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12"
         >
           <h2
@@ -82,21 +83,20 @@ export function Services() {
           >
             {lang === 'en' ? 'What I Build' : 'Что я делаю'}
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-dm-sans)' }}>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'var(--font-dm-sans)' }}>
             {lang === 'en' ? 'End-to-end Telegram automation & AI systems' : 'Полный цикл — от идеи до деплоя'}
           </p>
         </motion.div>
-
+ 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {services.map((service, i) => (
             <motion.div
               key={service.titleEN}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="h-full"
-              
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full flex flex-col items-stretch group"
             >
               <GlowCard customSize glowColor={service.glow} className="w-full h-full p-8 flex flex-col">
                 <div
@@ -113,13 +113,18 @@ export function Services() {
                 </h3>
                 <p
                   className="text-sm leading-relaxed mb-5 flex-1"
-                  style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-dm-sans)' }}
+                  style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'var(--font-dm-sans)' }}
                 >
                   {lang === 'en' ? service.descEN : service.descRU}
                 </p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {service.tags.map(tag => (
-                    <StackBadge key={tag}>{tag}</StackBadge>
+                    <StackBadge 
+                      key={tag}
+                      className="bg-white/3 border border-white/8 text-white/40 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 group-hover:text-cyan-400"
+                    >
+                      {tag}
+                    </StackBadge>
                   ))}
                 </div>
               </GlowCard>

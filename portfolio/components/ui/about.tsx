@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { GlowCard } from './spotlight-card'
+
 import { MapPin, Rocket, Shield, Terminal } from 'lucide-react'
 
 const timeline = [
@@ -10,7 +11,7 @@ const timeline = [
     year: '2021–2023',
     en: 'Web3 Community Management',
     ru: 'Web3 Community Management',
-    color: '#7c3aed',
+    color: '#0e7490',
   },
   {
     year: '2023–2024',
@@ -22,7 +23,7 @@ const timeline = [
     year: '2024–2025',
     en: 'Multi-account systems & AI tools',
     ru: 'Мультиаккаунт-системы и AI',
-    color: '#f97316',
+    color: '#22d3ee',
   },
   {
     year: '2025+',
@@ -63,14 +64,15 @@ export function About() {
   const { lang } = useLang()
 
   return (
-    <section id="about" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="relative py-24 px-6 overflow-hidden">
+
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <h2
@@ -81,7 +83,7 @@ export function About() {
           </h2>
           <p
             className="text-lg max-w-2xl"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}
+            style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 300, color: 'rgba(255,255,255,0.75)' }}
           >
             {lang === 'en'
               ? 'Self-taught developer who turned community management into building real automation products.'
@@ -90,15 +92,16 @@ export function About() {
         </motion.div>
 
         {/* Two-column layout */}
-        <div className="grid md:grid-cols-2 gap-10 mb-16">
+        <div className="grid md:grid-cols-2 gap-10 mb-16 items-stretch">
           {/* Left: Bio card */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, x: -30, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="h-full flex flex-col items-stretch"
           >
-            <GlowCard className="p-8 flex flex-col" glowColor="cyan">
+            <GlowCard className="p-8 flex flex-col h-full w-full" glowColor="cyan">
               <div className="flex items-center gap-2 mb-5">
                 <MapPin size={16} style={{ color: '#06b6d4' }} />
                 <span
@@ -130,12 +133,13 @@ export function About() {
 
           {/* Right: Timeline */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 30, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="h-full flex flex-col items-stretch"
           >
-            <GlowCard className="p-8 flex flex-col" glowColor="purple">
+            <GlowCard className="p-8 flex flex-col h-full w-full" glowColor="cyan">
               <h3
                 className="text-sm font-medium mb-6 uppercase tracking-wider"
                 style={{ fontFamily: 'var(--font-jetbrains-mono)', color: 'rgba(255,255,255,0.4)' }}
@@ -182,10 +186,10 @@ export function About() {
           {principles.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-20px' }}
+              transition={{ duration: 0.5, delay: 0.15 * i, ease: [0.16, 1, 0.3, 1] }}
             >
               <GlowCard className="p-6 flex flex-col" glowColor="cyan">
                 <div
@@ -202,7 +206,7 @@ export function About() {
                 </h4>
                 <p
                   className="text-xs leading-relaxed"
-                  style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 300, color: 'rgba(255,255,255,0.5)' }}
+                  style={{ fontFamily: 'var(--font-dm-sans)', fontWeight: 300, color: 'rgba(255,255,255,0.7)' }}
                 >
                   {lang === 'en' ? p.descEn : p.descRu}
                 </p>

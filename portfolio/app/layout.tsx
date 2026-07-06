@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
-import { Syne, JetBrains_Mono, DM_Sans } from "next/font/google";
+import { Unbounded, JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { LangProvider } from "@/context/lang";
 
-const syne = Syne({
+const syne = Unbounded({
   variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  subsets: ["cyrillic", "latin"],
+  weight: ["400", "500", "700", "800", "900"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
-  subsets: ["latin"],
+  subsets: ["cyrillic", "latin"],
   weight: ["400", "500"],
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const plusJakarta = Inter({
   variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  subsets: ["cyrillic", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,9 +37,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${jetbrainsMono.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${syne.variable} ${jetbrainsMono.variable} ${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-black text-white" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
+      <body className="min-h-full flex flex-col text-white" style={{ fontFamily: 'var(--font-dm-sans), sans-serif', background: '#050506' }}>
         <LangProvider>
           {children}
         </LangProvider>
