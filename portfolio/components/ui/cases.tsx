@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { CaseCard } from './case-card'
 import { CaseModal, type CaseDetail } from './case-modal'
-import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone, ShoppingCart } from 'lucide-react'
+import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone, ShoppingCart, Linkedin } from 'lucide-react'
 
 type CaseDetailWithIcon = CaseDetail & { icon: React.ReactNode }
 
@@ -190,6 +190,35 @@ const cases: CaseDetailWithIcon[] = [
     resultEN: 'Successfully deployed, replacing a manual order-taking process. Fully automated the order flow from customer to kitchen to courier.',
     resultRU: 'Успешно внедрено, заменив ручной сбор заказов. Полностью автоматизирован поток от клиента до кухни и курьера.',
     link: 'https://t.me/pelmeni_danang_bot',
+  },
+  {
+    title: 'LinkedIn AI Auto-Poster',
+    icon: <Linkedin size={36} />,
+    category: 'automation',
+    stack: ['Node.js', 'OpenAI', 'Gemini', 'Flux AI', 'LinkedIn API', 'PM2'],
+    descriptionEN: 'Autonomous content generation and posting system for LinkedIn. Scrapes daily news or takes custom topics, generates expert-level posts with AI, creates stylized corporate images via Flux, and publishes directly via LinkedIn API.',
+    descriptionRU: 'Автономная система генерации и публикации контента для LinkedIn. Собирает свежие новости или берет заданные темы, генерирует экспертные посты через AI, рисует стильные корпоративные картинки через Flux и публикует напрямую через LinkedIn API.',
+    highlights: ['Auto-posting', 'News scraping', 'AI Image Gen', 'OAuth2'],
+    featuresEN: [
+      'Dual mode: fully autonomous daily news scraping vs on-demand topic generation',
+      'AI text generation using OpenAI/Gemini tailored for LinkedIn professional tone',
+      'Automated custom image generation via Flux AI to boost post engagement',
+      'Direct integration with LinkedIn API for publishing text and media without manual intervention',
+      'Local OAuth2 callback server for easy LinkedIn token generation and renewal',
+      'Scheduled background execution via PM2 / Systemd for 24/7 autonomous operation'
+    ],
+    featuresRU: [
+      'Два режима: полностью автономный парсинг новостей или генерация по заданной теме',
+      'Генерация текста через OpenAI/Gemini с адаптацией под профессиональный тон LinkedIn',
+      'Автоматическая генерация уникальных изображений через Flux AI для привлечения внимания',
+      'Прямая интеграция с LinkedIn API для публикации текста и медиа без участия человека',
+      'Локальный OAuth2 сервер для удобного получения и обновления токенов LinkedIn',
+      'Фоновое выполнение по расписанию через PM2 / Systemd для автономной работы 24/7'
+    ],
+    challengeEN: 'Maintaining a consistent, high-quality professional presence on LinkedIn requires daily effort. The challenge was to fully automate the entire pipeline: from news research to writing, image generation, and posting.',
+    challengeRU: 'Поддержание профессионального профиля в LinkedIn требует ежедневных усилий. Задача состояла в полной автоматизации всего цикла: от поиска новостей до написания текста, генерации картинки и публикации.',
+    resultEN: 'The system runs entirely autonomously, generating and posting high-quality industry updates daily. It significantly increases profile views and professional network growth with zero daily manual input.',
+    resultRU: 'Система работает полностью автономно, ежедневно генерируя и публикуя качественные обновления индустрии. Это значительно увеличивает просмотры профиля и рост профессиональной сети при нулевых ежедневных усилиях.',
   },
 ]
 
