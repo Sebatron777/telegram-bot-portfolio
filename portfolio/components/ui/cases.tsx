@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 import { useLang } from '@/context/lang'
 import { CaseCard } from './case-card'
 import { CaseModal, type CaseDetail } from './case-modal'
-import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone } from 'lucide-react'
+import { UserPlus, Sparkles, SmilePlus, Wallet, Megaphone, ShoppingCart } from 'lucide-react'
 
 type CaseDetailWithIcon = CaseDetail & { icon: React.ReactNode }
 
@@ -162,6 +162,34 @@ const cases: CaseDetailWithIcon[] = [
     challengeRU: 'Массовые рассылки с нескольких аккаунтов без перманентных банов + удобный интерфейс для нетехнических операторов без доступа к серверу.',
     resultEN: 'Platform used for ongoing outreach campaigns. Round-robin + anti-flood combination reduced ban rate by ~80% compared to single-account approaches.',
     resultRU: 'Платформа используется для постоянных рассылок. Комбинация round-robin + антифлуд снизила процент банов на ~80% по сравнению с одноаккаунтным подходом.',
+  },
+  {
+    title: 'Pelmeni Danang Bot',
+    icon: <ShoppingCart size={36} />,
+    category: 'telegram-bot',
+    stack: ['Python', 'FastAPI', 'aiogram 3.x', 'Supabase', 'React (TMA)'],
+    descriptionEN: 'Full-stack food ordering Telegram Mini App for a local business. Features a frontend React TMA, FastAPI backend, and aiogram 3.x bot. Includes courier & manager panels, QR payments, and Google Drive 1C sync.',
+    descriptionRU: 'Full-stack приложение для заказа еды в Telegram (TMA). Включает React фронтенд, FastAPI бэкенд и бота на aiogram 3.x. Панели менеджера и курьера, QR-оплата и синхронизация с 1С через Google Drive.',
+    highlights: ['TMA', 'Manager panel', 'Courier panel', '1C Sync'],
+    featuresEN: [
+      'Client TMA: interactive menu, cart, checkout with map integration (Goong API)',
+      'Manager Panel: order management, menu editing, broadcast creation, 1C CSV export',
+      'Courier Panel: active orders, route building, native Telegram live location',
+      'Backend API: FastAPI serving TMA, handling HMAC initData validation and Supabase DB calls',
+      'Integration: Background APScheduler syncing inventory and sales via Google Drive',
+    ],
+    featuresRU: [
+      'Клиентское TMA: интерактивное меню, корзина, чекаут с картой (Goong API)',
+      'Панель менеджера: управление заказами и меню, рассылки, экспорт CSV для 1С',
+      'Панель курьера: активные заказы, построение маршрутов, live location через Telegram',
+      'Бэкенд: FastAPI API с валидацией initData и работой с Supabase',
+      'Интеграция: фоновые задачи (APScheduler) для синхронизации остатков с Google Drive',
+    ],
+    challengeEN: 'Building a seamless end-to-end delivery system inside Telegram with different role-based views (Client, Manager, Courier) and stable real-time order tracking.',
+    challengeRU: 'Создание бесшовной системы доставки внутри Telegram с разделением прав (Клиент, Менеджер, Курьер) и надежным отслеживанием заказов в реальном времени.',
+    resultEN: 'Successfully deployed, replacing a manual order-taking process. Fully automated the order flow from customer to kitchen to courier.',
+    resultRU: 'Успешно внедрено, заменив ручной сбор заказов. Полностью автоматизирован поток от клиента до кухни и курьера.',
+    link: 'https://t.me/pelmeni_danang_bot',
   },
 ]
 

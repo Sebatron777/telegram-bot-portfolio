@@ -20,6 +20,7 @@ export interface CaseDetail {
   challengeRU?: string
   resultEN?: string
   resultRU?: string
+  link?: string
 }
 
 const categoryColors: Record<string, string> = {
@@ -151,6 +152,24 @@ export function CaseModal({ item, onClose }: CaseModalProps) {
                 >
                   {lang === 'en' ? item.descriptionEN : item.descriptionRU}
                 </p>
+
+                {/* Link */}
+                {item.link && (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-4 px-6 py-2 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                    style={{
+                      fontFamily: 'var(--font-dm-sans)',
+                      background: `${color}15`,
+                      border: `1px solid ${color}40`,
+                      color: color,
+                    }}
+                  >
+                    {lang === 'en' ? 'Open Bot →' : 'Открыть бота →'}
+                  </a>
+                )}
 
 
                 {/* Features */}
